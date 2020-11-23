@@ -1,0 +1,22 @@
+resources:
+  - name: src1
+    type: git
+    source:
+      uri: https://github.com/idrop/concoursetest.git
+      branch: main
+
+  - name: image1
+    type: docker-image
+    source:
+      repository: localhost:5000/concoursetest
+
+jobs:
+  - name: build-and-push
+    plan:
+      - get: src1
+        trigger: true
+      - put: image1
+        params:
+          build: src1
+          build_args:
+            GRADLE_IMG: gradle:jdk11
