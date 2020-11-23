@@ -1,5 +1,4 @@
-ARG REG_IMG=gradle
-FROM ${REG_IMG}
-RUN echo test11
-RUN echo hi
-CMD ["java", "version "]
+ARG GRADLE_IMG=gradle
+FROM ${GRADLE_IMG}
+RUN gradle version
+CMD ["gradle", "version"]
